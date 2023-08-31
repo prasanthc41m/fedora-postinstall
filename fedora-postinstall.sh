@@ -153,7 +153,7 @@ do
 done
 #############################
 ## Applications
-sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 snapd
+sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 cloudflare-warp.x86_64 snapd
 #
 sudo snap install bitwarden authy
 #
