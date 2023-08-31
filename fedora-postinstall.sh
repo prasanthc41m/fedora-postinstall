@@ -153,11 +153,11 @@ do
 done
 #############################
 ## Applications
-sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch org.coolero.Coolero lutris.x86_64 snapd
+sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 snapd
 #
 sudo snap install bitwarden authy
 #
-flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 io.atom.Atom in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.wireshark.Wireshark org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.telegram.desktop
+flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 io.atom.Atom in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.wireshark.Wireshark org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.coolero.Coolero org.telegram.desktop
 #############################
 ## pipewire
 #############################
