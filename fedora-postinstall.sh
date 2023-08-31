@@ -34,8 +34,8 @@ cd legion-icons
 sudo make install
 #############################
 ## Folder Icon
-Sudo dnf install papirus-icon-theme -y
-settings set  org.gnome.desktop.interface icon-theme Papirus
+sudo dnf install papirus-icon-theme -y
+gsettings set  org.gnome.desktop.interface icon-theme Papirus
 #############################
 ## Network Interface Old Names
 cd /tmp/
