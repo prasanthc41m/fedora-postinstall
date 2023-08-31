@@ -33,6 +33,10 @@ git clone https://github.com/prasanthc41m/legion-icons.git
 cd legion-icons
 sudo make install
 #############################
+## Folder Icon
+Sudo dnf install papirus-icon-theme -y
+settings set  org.gnome.desktop.interface icon-theme Papirus
+#############################
 ## Network Interface Old Names
 cd /tmp/
 touch 70-persistent-net.rules
@@ -148,7 +152,7 @@ do
 done
 #############################
 ## Applications
-sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch org.coolero.Coolero lutris.x86_64 papirus-icon-theme snapd
+sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch org.coolero.Coolero lutris.x86_64 snapd
 #
 sudo snap install bitwarden authy
 #
