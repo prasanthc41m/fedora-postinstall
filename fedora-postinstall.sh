@@ -155,11 +155,23 @@ done
 #############################
 ## Applications
 sudo dnf copr enable aleasto/waydroid
-sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 cloudflare-warp.x86_64 easyeffects.x86_64 pavucontrol.x86_64 qpwgraph.x86_64 secure-delete waydroid perl-Image-ExifTool touchegg snapd https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  vlc vlc-extras
-
+sudo dnf install -y htop nload speedtest-cli bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 cloudflare-warp.x86_64 easyeffects.x86_64 pavucontrol.x86_64 qpwgraph.x86_64 secure-delete waydroid perl-Image-ExifTool touchegg snapd https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  vlc vlc-extras
 # You may also need to manually start the service
 sudo systemctl start touchegg
 sudo systemctl enable touchegg
+#
+# Fix bluetooth battery status issue in pipewire
+cd /tmp/
+sudo mkdir -p /etc/systemd/system/bluetooth.service.d/ 
+cat > override.conf <<EOL
+[Service]
+ExecStart=
+ExecStart=/usr/libexec/bluetooth/bluetoothd --experimental
+EOL
+sudo mv override.conf /etc/systemd/system/bluetooth.service.d/override.conf
+sudo systemctl restart bluetooth.service
+systemctl daemon-reload
+sudo systemctl edit bluetooth.service
 #
 systemctl --user disable warp-taskbar
 systemctl --user stop warp-taskbar
