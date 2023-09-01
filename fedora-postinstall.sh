@@ -137,6 +137,7 @@ https://extensions.gnome.org/extension/5985/do-not-disturb-while-screen-sharing-
 https://extensions.gnome.org/extension/4907/easyeffects-preset-selector/
 https://extensions.gnome.org/extension/4485/favourites-in-appgrid/
 https://extensions.gnome.org/extension/4687/server-status-indicator/
+https://extensions.gnome.org/extension/4033/x11-gestures/
 	)
 #
 for i in "${array[@]}"
@@ -153,7 +154,12 @@ do
 done
 #############################
 ## Applications
-sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 cloudflare-warp.x86_64 snapd
+sudo dnf copr enable aleasto/waydroid
+sudo dnf install -y htop nload speedtest-cli google-chrome-stable nmap easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 cloudflare-warp.x86_64 easyeffects.x86_64 pavucontrol.x86_64 qpwgraph.x86_64 secure-delete waydroid perl-Image-ExifTool touchegg snapd https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  vlc vlc-extras
+
+# You may also need to manually start the service
+sudo systemctl start touchegg
+sudo systemctl enable touchegg
 #
 systemctl --user disable warp-taskbar
 systemctl --user stop warp-taskbar
@@ -161,9 +167,17 @@ systemctl --user mask warp-taskbar
 #
 sudo snap install bitwarden authy
 #
-sudo flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 io.atom.Atom in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.wireshark.Wireshark org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.coolero.Coolero org.telegram.desktop
+sudo flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 io.atom.Atom in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.wireshark.Wireshark org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.telegram.desktop com.github.eneshecan.WhatsAppForLinux
 #############################
 ## pipewire
+cd /tmp
+git clone https://github.com/prasanthc41m/EasyEffects-Presets.git
+cd EasyEffects-Presets
+cp *.json ~/.config/easyeffects/output/
+#
+git clone https://github.com/prasanthc41m/EasyEffects-Presets-2.git
+cd EasyEffects-Presets-2
+cp LoudnessEqualizerPE.json ~/.config/easyeffects/output/
 #############################
 ## DEB Applications
 #############################
