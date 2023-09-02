@@ -77,35 +77,7 @@ touch ~/Documents/conky-notes.txt
 conky -c /etc/conky/conky-notes.conf -d
 ###############################
 ## Conky
-sudo dnf install conky git fontawesome5-fonts-all fontawesome-fonts grep libX11-devel.x86_64 gawk lm_sensors.x86_64 smartmontools automake pkg-config libtool  -y
-cd /tmp/ && rm -rf conky/
-git clone https://github.com/prasanthc41m/conky
-sudo cp -rf conky /etc/
-# color
-R='\033[0;31m'
-G='\033[0;32m'
-Y='\033[0;33m'
-NOCOL='\033[0m' 
-# network configuration
-eth=$(basename /sys/class/net/e*)
-wlan=$(basename /sys/class/net/w*)
-echo -e Your Ethernet is "${Y}""$eth""${NOCOL}" and WiFi is "${Y}""$wlan""${NOCOL}"
-result1="s/eth/$eth/g"
-result2="s/wlan/$wlan/g"
-#echo -e debug: ${Y}$result1 $result2${NOCOL}
-grep -rl 'eth' /etc/conky/conky.conf | xargs sed -i "$result1"  
-grep -rl 'wlan' /etc/conky/conky.conf | xargs sed -i "$result2"
-#GPU configuration
-sudo sed -i '/^${color2}${exec nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits}$color ${goto 210} ${exec nvidia-smi | grep % | cut -c 61-63} % ${goto 270} ${exec nvidia-smi | grep % | cut -c 37-40} MB ${goto 340}${exec nvidia-smi | grep % | cut -c 21-23} W       ${color3}${nvidia temp}°C$/s/^/#/' /etc/conky/conky.conf 
-sudo sed -i '/^${color2}AMD Radeon     ${color3}${font :size= 9}${lua_parse igputemp}°C$/s/^/#/' /etc/conky/conky.conf 
-# make executable
-sudo chmod +x /etc/conky/*
-sudo pkill conky
-conky -d
-mkdir ~/.config/autostart
-cp /usr/share/applicaions/conky.desktop ~/.config/autostart
-echo -e "${G}""Conky is running...""${NOCOL}"
-rm -rf /tmp/conky*
+cd /tmp && sudo rm -rf conky* && wget https://raw.githubusercontent.com/prasanthc41m/conky/main/conky-install.sh && sudo bash conky-install.sh
 #############################
 ## Gnome Extensions
 sudo dnf install -y gnome-extensions-app  
