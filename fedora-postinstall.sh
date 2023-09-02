@@ -63,7 +63,7 @@ EOL
 sudo mv 70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	
 ###########################
 ## Conky-notes
-sudo dnf install -y conky # Fedora
+sudo dnf install -y conky fontawesome-fonts.noarch fontawesome5-brands-fonts.noarch # Fedora
 cd /tmp
 git clone https://github.com/prasanthc41m/conky-sticky-notes.git
 cd conky-sticky-notes /usr/share/applicaions/
@@ -155,7 +155,7 @@ done
 #############################
 ## Applications
 sudo dnf copr enable aleasto/waydroid
-sudo dnf install -y htop nload speedtest-cli bluez google-chrome-stable radeontop nmap solaar easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch  lutris.x86_64 cloudflare-warp.x86_64 easyeffects.x86_64 pavucontrol.x86_64 qpwgraph.x86_64 secure-delete waydroid perl-Image-ExifTool touchegg snapd https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  vlc vlc-extras
+sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch radeontop lutris.x86_64 cloudflare-warp.x86_64 easyeffects.x86_64 pavucontrol.x86_64 qpwgraph.x86_64 secure-delete waydroid perl-Image-ExifTool touchegg snapd https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  vlc vlc-extras
 # You may also need to manually start the service
 sudo systemctl start touchegg
 sudo systemctl enable touchegg
