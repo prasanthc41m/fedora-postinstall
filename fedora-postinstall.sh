@@ -1,9 +1,10 @@
 #!/bin/bash
 ############################
 ## Terminal
-cd 
-mv .bashrc .bashrc-bak
-wget https://gist.githubusercontent.com/mage1k99/102108db3a65921d412bbf14f39e4c7d/raw/317d680e57483364cee1d09a0c603b3599967688/.bashrc
+cd /tmp
+curl https://gist.githubusercontent.com/mage1k99/102108db3a65921d412bbf14f39e4c7d/raw/317d680e57483364cee1d09a0c603b3599967688/.bashrc -o .bashrc
+mv ~/.bashrc ~/.bashrc-bak
+mv /tmp/.bashrc ~/.bashrc
 #############################
 ## Time 12h
 gsettings set org.gnome.desktop.interface clock-format '12h' 
@@ -62,11 +63,14 @@ SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="32:C5:F9:1E:55:2
 EOL
 sudo mv 70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	
 ###########################
+## Conky
+cd /tmp && sudo rm -rf conky* && git clone https://github.com/prasanthc41m/conky.git && cd conky && sudo bash conky-install.sh
+###############################
 ## Conky-notes
 sudo dnf install -y conky fontawesome-fonts.noarch fontawesome5-brands-fonts.noarch # Fedora
 cd /tmp
 git clone https://github.com/prasanthc41m/conky-sticky-notes.git
-cd conky-sticky-notes /usr/share/applicaions/
+cd conky-sticky-notes 
 sudo mv conky-notes.conf /etc/conky/
 sudo mv conky-notes-startup.sh /etc/conky/
 mkdir ~/.config/autostart
@@ -75,9 +79,6 @@ sudo cp ~/.config/autostart/conky-notes.desktop /usr/share/applications/conky-no
 sudo chmod +x /etc/conky/conky-notes-startup.sh
 touch ~/Documents/conky-notes.txt
 conky -c /etc/conky/conky-notes.conf -d
-###############################
-## Conky
-cd /tmp && sudo rm -rf conky* && wget https://raw.githubusercontent.com/prasanthc41m/conky/main/conky-install.sh && sudo bash conky-install.sh
 #############################
 ## Gnome Extensions
 sudo dnf install -y gnome-extensions-app  
@@ -111,7 +112,7 @@ https://extensions.gnome.org/extension/4485/favourites-in-appgrid/
 https://extensions.gnome.org/extension/4687/server-status-indicator/
 https://extensions.gnome.org/extension/4033/x11-gestures/
 	)
-#
+
 for i in "${array[@]}"
 do
     EXTENSION_ID=$(curl -s $i | grep -oP 'data-uuid="\K[^"]+')
@@ -126,9 +127,12 @@ do
 done
 #############################
 ## Applications
+sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
+curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo
 sudo dnf copr enable aleasto/waydroid
-sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 shotwell.x86_64 liquidctl.noarch radeontop lutris.x86_64 cloudflare-warp.x86_64 easyeffects.x86_64 pavucontrol.x86_64 qpwgraph.x86_64 secure-delete waydroid perl-Image-ExifTool touchegg snapd https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm  vlc vlc-extras
+sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras cloudflare-warp clamav clamd clamav-update clamtk helvum.x86_64 snapd 
 # You may also need to manually start the service
+sleep 5
 sudo systemctl start touchegg
 sudo systemctl enable touchegg
 #
@@ -145,23 +149,49 @@ sudo systemctl restart bluetooth.service
 systemctl daemon-reload
 sudo systemctl edit bluetooth.service
 #
+warp-cli register
 systemctl --user disable warp-taskbar
 systemctl --user stop warp-taskbar
 systemctl --user mask warp-taskbar
 #
+sudo systemctl stop clamav-freshclam
+sudo freshclam
+sudo systemctl enable clamav-freshclam --now
+#
 sudo snap install bitwarden authy
 #
-sudo flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 io.atom.Atom in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.wireshark.Wireshark org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.telegram.desktop com.github.eneshecan.WhatsAppForLinux
+sudo flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.wireshark.Wireshark org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.telegram.desktop com.github.eneshecan.WhatsAppForLinux com.github.ADBeveridge.Raider org.gnome.Builder
+#
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap set system experimental.parallel-instances=true
+sudo snap install authy bitwarden 
+#
 #############################
 ## pipewire
+easyeffects -q
 cd /tmp
 git clone https://github.com/prasanthc41m/EasyEffects-Presets.git
 cd EasyEffects-Presets
 cp *.json ~/.config/easyeffects/output/
 #
+cd /tmp
 git clone https://github.com/prasanthc41m/EasyEffects-Presets-2.git
 cd EasyEffects-Presets-2
 cp LoudnessEqualizerPE.json ~/.config/easyeffects/output/
+#
+cd /tmp
+git clone https://github.com/prasanthc41m/pipewire.git
+sudo cp pipewire/bt-audio.desktop /usr/share/applications/
+sudo cp -r pipewire /opt/
 #############################
 ## DEB Applications
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf update -y
+sudo dnf install openssl xdg-utils ffmpeg -y
+wget https://dn3.freedownloadmanager.org/6/latest/freedownloadmanager.deb
+mkdir freedownloadmanager
+cd freedownloadmanager
+ar x ../freedownloadmanager.deb
+sudo tar -xvJf data.tar.xz -C /
 #############################
