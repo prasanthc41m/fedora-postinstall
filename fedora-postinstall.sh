@@ -1,5 +1,10 @@
 #!/bin/bash
 ############################
+## Grub
+sudo dnf -y reinstall grub2-common
+sudo grub2-editenv create
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+sudo dracut -f --regenerate-all
 ## Terminal
 cd /tmp
 curl https://gist.githubusercontent.com/mage1k99/102108db3a65921d412bbf14f39e4c7d/raw/317d680e57483364cee1d09a0c603b3599967688/.bashrc -o .bashrc
@@ -28,7 +33,7 @@ cd legion-wallpaper
 sudo make install
 #############################
 ## Mouse Icon
-sudo dnf install -y gnome-tweaks
+sudo dnf install -y gnome-tweaks inkscape xcursorgen
 cd /tmp/
 git clone https://github.com/prasanthc41m/legion-icons.git 
 cd legion-icons
@@ -36,6 +41,7 @@ sudo make install
 #############################
 ## Folder Icon
 sudo dnf install papirus-icon-theme -y
+sleep 5
 gsettings set  org.gnome.desktop.interface icon-theme Papirus
 #############################
 ## Network Interface Old Names
@@ -130,7 +136,7 @@ done
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
 curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo
 sudo dnf copr enable aleasto/waydroid
-sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras cloudflare-warp clamav clamd clamav-update clamtk helvum.x86_64 VirtualBox.x86_64 snapd 
+sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras cloudflare-warp clamav clamd clamav-update clamtk helvum.x86_64 VirtualBox.x86_64 dropbox.x86_64 snapd 
 # You may also need to manually start the service
 sleep 5
 sudo systemctl start touchegg
