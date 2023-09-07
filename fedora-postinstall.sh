@@ -117,6 +117,7 @@ https://extensions.gnome.org/extension/4907/easyeffects-preset-selector/
 https://extensions.gnome.org/extension/4485/favourites-in-appgrid/
 https://extensions.gnome.org/extension/4687/server-status-indicator/
 https://extensions.gnome.org/extension/4033/x11-gestures/
+https://extensions.gnome.org/extension/6162/solaar-extension/
 	)
 
 for i in "${array[@]}"
