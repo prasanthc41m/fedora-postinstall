@@ -185,7 +185,7 @@ cp *.json ~/.config/easyeffects/output/
 cd /tmp
 git clone https://github.com/prasanthc41m/EasyEffects-Presets-2.git
 cd EasyEffects-Presets-2
-cp LoudnessEqualizerPE.json ~/.config/easyeffects/output/
+cp LoudnessEqualizer.json ~/.config/easyeffects/output/
 #
 cd /tmp
 git clone https://github.com/prasanthc41m/pipewire.git
