@@ -1,4 +1,5 @@
 #!/bin/bash
+printf "Run auto-sign.sh before this!!"
 ############################
 ## Grub
 sudo dnf -y reinstall grub2-common
