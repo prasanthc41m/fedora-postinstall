@@ -139,7 +139,7 @@ done
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
 curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo
 sudo dnf copr enable aleasto/waydroid
-sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras cloudflare-warp clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 dropbox.x86_64 onedrive.x86_64 snapd 
+sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap wireshark.x86_64 solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras cloudflare-warp clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 dropbox.x86_64 onedrive.x86_64 snapd 
 # You may also need to manually start the service
 sleep 5
 sudo systemctl start touchegg
@@ -169,7 +169,7 @@ sudo systemctl enable clamav-freshclam --now
 #
 sudo snap install bitwarden authy
 #
-sudo flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.wireshark.Wireshark org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.telegram.desktop com.github.eneshecan.WhatsAppForLinux com.github.ADBeveridge.Raider org.gnome.Builder
+sudo flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer com.microsoft.Edge org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.telegram.desktop com.github.eneshecan.WhatsAppForLinux com.github.ADBeveridge.Raider org.gnome.Builder
 #
 sudo dnf install snapd
 sudo ln -s /var/lib/snapd/snap /snap
