@@ -145,6 +145,10 @@ sleep 5
 sudo systemctl start touchegg
 sudo systemctl enable touchegg
 #
+## add user to group
+sudo usermod -a -G wireshark $USER
+sudo usermod -a -G vboxusers $USER
+#
 # Fix bluetooth battery status issue in pipewire
 cd /tmp/
 sudo mkdir -p /etc/systemd/system/bluetooth.service.d/ 
