@@ -59,10 +59,10 @@ cat > 70-persistent-net.rules <<EOL
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="88:a4:c2:b7:96:b9", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eno*", NAME="eth0"
 
 # PCI device Wlan Device
-SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="20:c1:9b:45:cc:8e", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan0"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="20:c1:9b:45:cc:8e", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wl*", NAME="wlan0"
 
 # USB device Wlan Device
-SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:c0:ca:75:e2:d5", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan1"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:c0:ca:75:e2:d5", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wl*", NAME="wlan1"
 
 # USB device lan Device
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="32:C5:F9:1E:55:2D", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="enp*", NAME="eth1"
