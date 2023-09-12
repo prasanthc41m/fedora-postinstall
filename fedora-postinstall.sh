@@ -69,6 +69,7 @@ SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="32:C5:F9:1E:55:2
 '
 EOL
 sudo mv 70-persistent-net.rules /etc/udev/rules.d/70-persistent-net.rules	
+sudo ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ###########################
 ## Conky
 cd /tmp && sudo rm -rf conky* && git clone https://github.com/prasanthc41m/conky.git && cd conky && sudo bash conky-install.sh
