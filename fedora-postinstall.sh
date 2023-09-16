@@ -177,6 +177,8 @@ sudo systemctl enable touchegg
 sudo usermod -a -G wireshark $USER
 sudo usermod -a -G vboxusers $USER
 #
+ln -s /mnt/Data/OS/VBoxGuestAdditions_7.0.8.iso .config/VirtualBox/
+#
 # Fix bluetooth battery status issue in pipewire
 cd /tmp/
 sudo mkdir -p /etc/systemd/system/bluetooth.service.d/ 
