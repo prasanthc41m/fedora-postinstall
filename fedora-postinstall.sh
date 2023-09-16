@@ -1,5 +1,24 @@
 #!/bin/bash
-printf "Run auto-sign.sh before this!!"
+############################
+# Check autosign installation status.
+output=$(sudo mokutil --import /etc/pki/akmods/certs/public_key.der)
+
+# Check if the output contains the word "already enrolled"
+if [[ $output == *"already enrolled"* ]]; then
+    # If "already enrolled" is found, proceed with the first script
+    echo "Secure boot key enrolled. Proceeding with fedora-postinstall.sh"
+    # Add your code for Script 1 here
+else
+    # If "already enrolled" is not found, prompt the user to run a different script
+    echo "Secure boot key not enrolled'."
+    echo "Please run autosign"
+    # Optionally, you can provide Script 2
+sudo dnf install kmodtool akmods mokutil openssl -y
+sudo kmodgenca -a
+sudo mokutil --import /etc/pki/akmods/certs/public_key.der
+printf "Reboot now and enroll with the password!!"
+fi
+#
 ############################
 ## Grub
 sudo dnf -y reinstall grub2-common
@@ -8,9 +27,10 @@ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo dracut -f --regenerate-all
 ## Terminal
 cd /tmp
-curl https://gist.githubusercontent.com/mage1k99/102108db3a65921d412bbf14f39e4c7d/raw/317d680e57483364cee1d09a0c603b3599967688/.bashrc -o .bashrc
+git clone https://github.com/prasanthc41m/fedora-postinstall.git
 mv ~/.bashrc ~/.bashrc-bak
-mv /tmp/.bashrc ~/.bashrc
+cp fedora-postinstall/bashrc ~/.bashrc
+sudo cp /tmp/fedora-postinstall/bashrc /root/.bashrc
 #############################
 ## Time 12h
 gsettings set org.gnome.desktop.interface clock-format '12h' 
@@ -117,9 +137,9 @@ https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/
 https://extensions.gnome.org/extension/5985/do-not-disturb-while-screen-sharing-or-recording/
 https://extensions.gnome.org/extension/4907/easyeffects-preset-selector/
 https://extensions.gnome.org/extension/4485/favourites-in-appgrid/
-https://extensions.gnome.org/extension/4687/server-status-indicator/
 https://extensions.gnome.org/extension/4033/x11-gestures/
 https://extensions.gnome.org/extension/6162/solaar-extension/
+https://extensions.gnome.org/extension/6260/ping/
 	)
 
 for i in "${array[@]}"
@@ -140,7 +160,14 @@ sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-r
 curl -fsSl https://pkg.cloudflareclient.com/cloudflare-warp-ascii.repo | sudo tee /etc/yum.repos.d/cloudflare-warp.repo
 sudo wget -O /etc/yum.repos.d/microsoft-prod.repo https://packages.microsoft.com/yumrepos/edge/config.repo
 sudo dnf copr enable aleasto/waydroid
-sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 microsoft-edge-stable.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras cloudflare-warp clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 dropbox.x86_64 onedrive.x86_64 wireshark.x86_64 snapd 
+sudo echo "[dropbox-yum]
+name=Dropbox Repository
+baseurl=https://linux.dropbox.com/fedora/\$releasever/
+gpgkey=https://linux.dropbox.com/fedora/rpm-public-key.asc" > /tmp/dropbox.repo
+sudo cp /tmp/dropbox.repo /etc/yum.repos.d/
+sudo dnf update -y
+#
+sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 microsoft-edge-stable.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 nautilus-dropbox onedrive.x86_64 wireshark.x86_64 filezilla.x86_64 snapd 
 # You may also need to manually start the service
 sleep 5
 sudo systemctl start touchegg
@@ -172,21 +199,13 @@ sudo systemctl stop clamav-freshclam
 sudo freshclam
 sudo systemctl enable clamav-freshclam --now
 #
-sudo snap install bitwarden authy
+sudo snap install bitwarden 
+sudo snap install authy
 #
-flatpak install -y com.mattjakeman.ExtensionManager org.gnome.Extensions fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 in.srev.guiscrcpy us.zoom.Zoom org.filezillaproject.Filezilla  io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager org.telegram.desktop com.github.eneshecan.WhatsAppForLinux com.github.ADBeveridge.Raider org.gnome.Builder
+flatpak install -y com.mattjakeman.ExtensionManager fr.romainvigier.MetadataCleaner com.belmoussaoui.Obfuscate cc.arduino.IDE2 us.zoom.Zoom io.freetubeapp.FreeTube nz.mega.MEGAsync org.tigervnc.vncviewer org.gnome.DejaDup com.spotify.Client org.raspberrypi.rpi-imager com.github.eneshecan.WhatsAppForLinux com.github.ADBeveridge.Raider org.gnome.Builder
 #
-sudo dnf install snapd
-sudo ln -s /var/lib/snapd/snap /snap
-sudo snap set system experimental.parallel-instances=true
-sudo snap install authy bitwarden 
-#
-cd /tmp/
-wget https://packages.microsoft.com/yumrepos/edge/microsoft-edge-stable-116.0.1938.81-1.x86_64.rpm?brand=M102
-sudo dnf install -y microsoft-edge-stable-116.0.1938.81-1.x86_64.rpm
-
 #############################
-## pipewire
+## Pipewire
 easyeffects -q
 cd /tmp
 git clone https://github.com/prasanthc41m/EasyEffects-Presets.git
@@ -204,12 +223,14 @@ sudo cp pipewire/bt-audio.desktop /usr/share/applications/
 sudo cp -r pipewire /opt/
 #############################
 ## DEB Applications
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+cd /tmp
 sudo dnf update -y
 sudo dnf install openssl xdg-utils ffmpeg -y
-wget https://dn3.freedownloadmanager.org/6/latest/freedownloadmanager.deb
-mkdir freedownloadmanager
+curl https://dn3.freedownloadmanager.org/6/latest/freedownloadmanager.deb -o freedownloadmanager.deb
+mkdir -p freedownloadmanager
 cd freedownloadmanager
 ar x ../freedownloadmanager.deb
 sudo tar -xvJf data.tar.xz -C /
+#
+echo "Installation success, reboot.."
 #############################
