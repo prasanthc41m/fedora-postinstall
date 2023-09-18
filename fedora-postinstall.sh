@@ -240,3 +240,24 @@ sudo tar -xvJf data.tar.xz -C /
 #
 echo "Installation success, reboot.."
 #############################
+## Web WhatsApp Linux Application
+cd /tmp/
+rm -rf /tmp/whatsapp-linux-build-dir
+mkdir -p whatsapp-linux-build-dir
+cd whatsapp-linux-build-dir
+curl -o icon.png https://iconduck.com/api/v2/vectors/vctrmbe0zx1p/media/png/256/download
+#wget https://iconduck.com/api/v2/vectors/vctrmbe0zx1p/media/png/256/download -O icon.png
+# convert -resize 256x256^ icon.png icon.png
+sudo dnf install npm -y
+sudo npm install -g nativefier
+
+nativefier -p linux -a x64 -i icon.png --disable-context-menu --disable-dev-tools --single-instance https://web.whatsapp.com/
+
+sudo mv WhatsAppWeb-linux-x64 whatsapp
+sudo rm -rf /opt/whatsapp
+sudo mv /tmp/whatsapp-linux-build-dir/whatsapp /opt
+sudo mv /opt/whatsapp/WhatsAppWeb  /opt/whatsapp/whatsapp
+sudo chmod 755 -R /opt/whatsapp/
+
+echo -e "[Desktop Entry]\nType=Application\nExec=/opt/whatsapp/whatsapp %F\nName=WhatsApp\nIcon=/opt/whatsapp/resources/app/icon.png\nCategories=Network;InstantMessaging;\nTerminal=false\nStartupNotify=true" > /tmp/whatsapp.desktop
+sudo mv /tmp/whatsapp.desktop /usr/share/applications/
