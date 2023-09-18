@@ -238,7 +238,6 @@ cd freedownloadmanager
 ar x ../freedownloadmanager.deb
 sudo tar -xvJf data.tar.xz -C /
 #
-echo "Installation success, reboot.."
 #############################
 ## Web WhatsApp Linux Application
 cd /tmp/
@@ -261,3 +260,6 @@ sudo chmod 755 -R /opt/whatsapp/
 
 echo -e "[Desktop Entry]\nType=Application\nExec=/opt/whatsapp/whatsapp %F\nName=WhatsApp\nIcon=/opt/whatsapp/resources/app/icon.png\nCategories=Network;InstantMessaging;\nTerminal=false\nStartupNotify=true" > /tmp/whatsapp.desktop
 sudo mv /tmp/whatsapp.desktop /usr/share/applications/
+#
+echo "Installation success, reboot.."
+#############################
