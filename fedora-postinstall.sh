@@ -16,7 +16,7 @@ else
 sudo dnf install kmodtool akmods mokutil openssl -y
 sudo kmodgenca -a
 sudo mokutil --import /etc/pki/akmods/certs/public_key.der
-# sudo mokutil --import /var/lib/dkms/mok.pub"
+sudo mokutil --import /var/lib/dkms/mok.pub"
 printf "Reboot now and enroll with the password!!"
 fi
 #
@@ -262,5 +262,12 @@ sudo chmod 755 -R /opt/whatsapp/
 echo -e "[Desktop Entry]\nType=Application\nExec=/opt/whatsapp/whatsapp %F\nName=WhatsApp\nIcon=/opt/whatsapp/resources/app/icon.png\nCategories=Network;InstantMessaging;\nTerminal=false\nStartupNotify=true" > /tmp/whatsapp.desktop
 sudo mv /tmp/whatsapp.desktop /usr/share/applications/
 #
+## Lenovo Legion Linux Support
+git clone https://github.com/johnfanv2/LenovoLegionLinux.git
+cd LenovoLegionLinux/kernel_module
+sudo cp ./kernel_module/* /usr/src/LenovoLegionLinux-1.0.0 -r
+sudo dkms add -m LenovoLegionLinux -v 1.0.0
+sudo dkms build -m LenovoLegionLinux -v 1.0.0
+#############################
 echo "Installation success, reboot.."
 #############################
