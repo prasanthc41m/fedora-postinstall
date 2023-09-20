@@ -263,6 +263,7 @@ echo -e "[Desktop Entry]\nType=Application\nExec=/opt/whatsapp/whatsapp %F\nName
 sudo mv /tmp/whatsapp.desktop /usr/share/applications/
 #
 ## Lenovo Legion Linux Support
+cd /tmp/
 git clone https://github.com/johnfanv2/LenovoLegionLinux.git
 cd LenovoLegionLinux/kernel_module
 sudo cp ./kernel_module/* /usr/src/LenovoLegionLinux-1.0.0 -r
