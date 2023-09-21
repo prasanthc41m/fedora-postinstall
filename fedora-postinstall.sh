@@ -168,7 +168,7 @@ gpgkey=https://linux.dropbox.com/fedora/rpm-public-key.asc" > /tmp/dropbox.repo
 sudo cp /tmp/dropbox.repo /etc/yum.repos.d/
 sudo dnf update -y
 #
-sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 microsoft-edge-stable.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 nautilus-dropbox onedrive.x86_64 wireshark.x86_64 filezilla.x86_64 snapd 
+sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync luckybackup.x86_64 pavucontrol.x86_64 microsoft-edge-stable.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 nautilus-dropbox onedrive.x86_64 wireshark.x86_64 filezilla.x86_64 snapd 
 ## Youtube issue fix
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
