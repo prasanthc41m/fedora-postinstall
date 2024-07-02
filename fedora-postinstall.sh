@@ -16,7 +16,7 @@ else
 sudo dnf install kmodtool akmods mokutil openssl -y
 sudo kmodgenca -a
 sudo mokutil --import /etc/pki/akmods/certs/public_key.der
-sudo mokutil --import /var/lib/dkms/mok.pub"
+sudo mokutil --import /var/lib/dkms/mok.pub
 printf "Reboot now and enroll with the password!!"
 fi
 #
@@ -169,7 +169,7 @@ gpgkey=https://linux.dropbox.com/fedora/rpm-public-key.asc" > /tmp/dropbox.repo
 sudo cp /tmp/dropbox.repo /etc/yum.repos.d/
 sudo dnf update -y
 #
-sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync luckybackup.x86_64 pavucontrol.x86_64 microsoft-edge-stable.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 nautilus-dropbox onedrive.x86_64 wireshark.x86_64 filezilla.x86_64 snapd 
+sudo dnf install -y htop nload speedtest-cli hwinfo.x86_64 hicolor-icon-theme.noarch lm_sensors.x86_64 bluez google-chrome-stable nmap solaar easyeffects.x86_64 qpwgraph.x86_64 radeontop lutris.x86_64 cloudflare-warp.x86_64 grsync pavucontrol.x86_64 microsoft-edge-stable.x86_64 waydroid perl-Image-ExifTool touchegg vlc vlc-extras clamav clamd clamav-update clamtk helvum.x86_64 @development-tools dkms VirtualBox.x86_64 nautilus-dropbox onedrive.x86_64 wireshark.x86_64 filezilla.x86_64 snapd luckybackup.x86_64
 ## Youtube issue fix
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
@@ -264,6 +264,11 @@ echo -e "[Desktop Entry]\nType=Application\nExec=/opt/whatsapp/whatsapp %F\nName
 sudo mv /tmp/whatsapp.desktop /usr/share/applications/
 #
 ## Lenovo Legion Linux Support
+sudo dnf install -y kernel-headers kernel-devel dmidecode lm_sensors PyQt5 python3-yaml python3-pip python3-argcomplete python3-darkdetect
+sudo dnf groupinstall "Development Tools"
+sudo dnf group install "C Development Tools and Libraries"
+# Install the following for installation with DKMS
+sudo dnf install dkms openssl mokutil
 cd /tmp/
 git clone https://github.com/johnfanv2/LenovoLegionLinux.git
 cd LenovoLegionLinux/kernel_module
