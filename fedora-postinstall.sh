@@ -141,6 +141,7 @@ https://extensions.gnome.org/extension/4485/favourites-in-appgrid/
 https://extensions.gnome.org/extension/4033/x11-gestures/
 https://extensions.gnome.org/extension/6162/solaar-extension/
 https://extensions.gnome.org/extension/6260/ping/
+https://extensions.gnome.org/extension/4099/no-overview/
 	)
 
 for i in "${array[@]}"
