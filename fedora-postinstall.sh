@@ -38,7 +38,8 @@ gsettings set org.gnome.desktop.interface clock-format '12h'
 ############################
 ## Nvidia
 sudo dnf update -y
-sudo dnf install -y make gcc kernel-headers kernel-devel akmod-nvidia-470xx.x86_64 xorg-x11-drv-nvidia-470xx.x86_64 xorg-x11-drv-nvidia-470xx-cuda.x86_64 nvidia-settings-470xx.x86_64
+sudo dnf install -y make gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda.x86_64 nvidia-settings.x86_64
+
 sudo akmods --force
 sudo dracut --force
 ############################
