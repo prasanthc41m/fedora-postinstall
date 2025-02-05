@@ -118,7 +118,6 @@ https://extensions.gnome.org/extension/307/dash-to-dock/
 https://extensions.gnome.org/extension/6145/switch-x11-wayland-default-session/
 https://extensions.gnome.org/extension/19/user-themes/
 https://extensions.gnome.org/extension/1852/gamemode/
-https://extensions.gnome.org/extension/3193/blur-my-shell/
 https://extensions.gnome.org/extension/7/removable-drive-menu/
 https://extensions.gnome.org/extension/19/user-themes/
 https://extensions.gnome.org/extension/16/auto-move-windows/
