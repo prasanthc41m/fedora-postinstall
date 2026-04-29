@@ -34,6 +34,7 @@ sudo dracut --force
 ############################
 ## Grub2 Theme
 cd /tmp/
+sudo dnf install git -y
 git clone https://github.com/prasanthc41m/legion-grub.git
 cd legion-grub
 sudo bash install.sh
